@@ -43,6 +43,12 @@
   function handleReadyState(o, success, error) {
     return function () {
       if (o && o[readyState] == 4) {
+        // TODO: make sure this is a local protocol
+        if (!o.status) {
+          // TODO: check response text
+          o.status = 200;
+        }
+
         if (twoHundo.test(o.status)) {
           success(o)
         } else {
